@@ -13,6 +13,7 @@ use Stringy\StaticStringy;
 
 class Str
 {
+
     use Macroable;
 
     /**
