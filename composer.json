@@ -9,13 +9,17 @@
   "description": "HellaEngine support php code .",
   "require": {
     "php": ">=5.0.0",
-    "danielstjules/stringy": "*"
+    "danielstjules/stringy": "*",
+    "brandonwamboldt/utilphp": "^1.1"
   },
   "license": "MIT",
   "autoload": {
     "psr-4": {
       "hellaEngine\\": "src/hellaEngine/"
-    }
+    },
+    "files": [
+      "src/hellaEngine/support/Helper.php"
+    ]
   },
   "authors": [
     {
