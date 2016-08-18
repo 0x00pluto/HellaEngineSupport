@@ -21,7 +21,7 @@ namespace hellaEngine\support;
 
 function dump($varVal, $isReturn = false, $richHtml = true, $lineStack = 0)
 {
-    return (new Debug())->dump($varVal, $isReturn, $richHtml, $lineStack);
+    return (new Debug())->dump($varVal, $isReturn, $richHtml, $lineStack + 1);
 }
 
 /**
@@ -32,5 +32,5 @@ function dump($varVal, $isReturn = false, $richHtml = true, $lineStack = 0)
  */
 function dumpStack($lineStack = 0, $return = FALSE)
 {
-    return (new Debug())->dumpStack($lineStack, $return);
+    return (new Debug())->dumpStack($lineStack + 1, $return);
 }
