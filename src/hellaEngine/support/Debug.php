@@ -40,7 +40,7 @@ class Debug
         ];
 
         if ($richHtml) {
-            return util::var_dump($printInfo, $isReturn);
+            return util::var_dump($printInfo, $isReturn, -1);
         } else {
             return var_export($printInfo, $isReturn);
         }
