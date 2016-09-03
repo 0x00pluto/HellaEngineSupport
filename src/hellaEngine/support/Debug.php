@@ -9,8 +9,6 @@
 namespace hellaEngine\support;
 
 
-use utilphp\util;
-
 /**
  * 调试类
  * Class Debug
@@ -22,13 +20,11 @@ class Debug
 
     /**
      * @param $varVal
-     * @param bool $isReturn
      * @param int $lineStack
-     * @param bool $richHtml
      * @param int $lineStack
      * @return string
      */
-    public function dump($varVal, $isReturn = false, $richHtml = true, $lineStack = 0)
+    public function dump($varVal, $lineStack = 0)
     {
         $track = debug_backtrace();
         $trackInfo = $track [$lineStack];
@@ -39,11 +35,7 @@ class Debug
             'var' => $varVal
         ];
 
-        if ($richHtml) {
-            return util::var_dump($printInfo, $isReturn, -1);
-        } else {
-            return var_export($printInfo, $isReturn);
-        }
+        return dump($printInfo);
     }
 
 
@@ -73,7 +65,7 @@ class Debug
         if ($return) {
             return $returnVar;
         } else {
-            $this->dump($returnVar, FALSE, true, $lineStack + 1);
+            $this->dump($returnVar, $lineStack + 1);
         }
     }
 }
