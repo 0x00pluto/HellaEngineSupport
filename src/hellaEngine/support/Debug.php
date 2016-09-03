@@ -49,11 +49,12 @@ class Debug
 
     /**
      * 打印调用堆栈
+     * @param mixed $varVal
      * @param int $lineStack
      * @param bool|FALSE $return
      * @return array
      */
-    function dumpStack($lineStack = 0, $return = FALSE)
+    function dumpStack($varVal, $lineStack = 0, $return = FALSE)
     {
         $debug_Info = debug_backtrace();
         $stack = [];
@@ -64,10 +65,15 @@ class Debug
             }
         }
         array_shift($stack);
+
+        $returnVar = [
+            'var' => $varVal,
+            'stack' => $stack
+        ];
         if ($return) {
-            return $stack;
+            return $returnVar;
         } else {
-            $this->dump($stack, FALSE, true, $lineStack + 1);
+            $this->dump($returnVar, FALSE, true, $lineStack + 1);
         }
     }
 }

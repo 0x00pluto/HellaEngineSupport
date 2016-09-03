@@ -7,8 +7,6 @@
  * Time: 上午11:33
  */
 
-namespace hellaEngine\support;
-
 
 /**
  * @param $varVal
@@ -21,16 +19,17 @@ namespace hellaEngine\support;
 
 function dump($varVal, $isReturn = false, $richHtml = true, $lineStack = 0)
 {
-    return (new Debug())->dump($varVal, $isReturn, $richHtml, $lineStack + 1);
+    return (new \hellaEngine\support\Debug())->dump($varVal, $isReturn, $richHtml, $lineStack + 1);
 }
 
 /**
  * 打印调用堆栈
+ * @param mixed $varVal
  * @param int $lineStack
  * @param bool|FALSE $return
  * @return array
  */
-function dumpStack($lineStack = 0, $return = FALSE)
+function dumpStack($varVal = null, $lineStack = 0, $return = FALSE)
 {
-    return (new Debug())->dumpStack($lineStack + 1, $return);
+    return (new \hellaEngine\support\Debug())->dumpStack($varVal, $lineStack + 1, $return);
 }
