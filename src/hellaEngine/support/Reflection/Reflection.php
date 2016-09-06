@@ -6,13 +6,13 @@
  * Time: 上午10:59
  */
 
-namespace hellaEngine\support\Refection;
+namespace hellaEngine\support\Reflection;
 
 /**
  * Class Refection
  * @package hellaEngine\support\Refection
  */
-class Refection
+class Reflection
 {
     /**
      * 调用全局函数
@@ -26,14 +26,10 @@ class Refection
         $ref = new \ReflectionFunction($method);
         $params = [];
         foreach ($ref->getParameters() as $p) {
-            if ($p->isOptional()) {
-                if (isset ($arr [$p->name])) {
-                    $params [] = $arr [$p->name];
-                } else {
-                    $params [] = $p->getDefaultValue();
-                }
-            } else if (isset ($arr [$p->name])) {
+            if (isset ($arr [$p->name])) {
                 $params [] = $arr [$p->name];
+            } else if ($p->isOptional() || $p->isDefaultValueAvailable()) {
+                $params [] = $p->getDefaultValue();
             } else {
                 throw new MissingArgumentException ("Missing parameter $p->name");
             }
@@ -76,19 +72,15 @@ class Refection
 
         foreach ($ref->getParameters() as $p) {
             $paramName = strtoupper($p->name);
-            if ($p->isOptional()) {
-                if (isset ($finalArr [$paramName])) {
-                    $params [] = $finalArr [$paramName];
-                } else {
-                    $params [] = $p->getDefaultValue();
-                }
-            } else if (isset ($finalArr [$paramName])) {
+            //已经传入参数了
+            if (isset($finalArr[$paramName])) {
                 $params [] = $finalArr [$paramName];
+            } else if ($p->isOptional() || $p->isDefaultValueAvailable()) {
+                $params [] = $p->getDefaultValue();
             } else {
                 throw new MissingArgumentException ("Missing parameter $paramName");
             }
         }
-
         return $ref->invokeArgs($classObject, $params);
     }
 }

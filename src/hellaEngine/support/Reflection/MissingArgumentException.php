@@ -6,7 +6,7 @@
  * Time: 上午11:01
  */
 
-namespace hellaEngine\support\Refection;
+namespace hellaEngine\support\Reflection;
 
 
 class MissingArgumentException extends \Exception
