@@ -35,10 +35,19 @@ class Http
         $ch = curl_init();
         switch (strtoupper($method)) {
             case self::METHOD_GET :
-                if (false === stripos($url, '?')) {
-                    $url .= '?' . $query;
+                if (is_string($query)) {
+                    $queryString = $query;
                 } else {
-                    $url .= '&' . $query;
+                    $queryStringArray = [];
+                    foreach ($query as $key => $value) {
+                        $queryStringArray [] = "$key=$value";
+                    }
+                    $queryString = join("&", $queryStringArray);
+                }
+                if (false === stripos($url, '?')) {
+                    $url .= '?' . $queryString;
+                } else {
+                    $url .= '&' . $queryString;
                 }
                 break;
             case self::METHOD_POST :
