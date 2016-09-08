@@ -14,11 +14,11 @@ class DebugTest extends \PHPUnit_Framework_TestCase
 
     public function testDump()
     {
-        dumpLine("test");
-
-        dumpLine("test", false, false);
-
-        dumpStack();
+//        dumpLine("test");
+//
+//        dumpLine("test", false, false);
+//
+//        dumpStack();
 
     }
 }
