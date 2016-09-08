@@ -15,6 +15,7 @@ namespace hellaEngine\support\Http;
  */
 class HttpResponse
 {
+
     const HTTP_CODE_OK = 200;
 
     /**
@@ -29,15 +30,22 @@ class HttpResponse
 
 
     /**
+     * @var string 原始URL
+     */
+    private $originURL;
+
+
+    /**
      * @param int $httpCode
      * @param int $response
      * @return HttpResponse
      */
-    public static function create($httpCode, $response)
+    public static function create($httpCode, $response, $originURL)
     {
         $ins = new self();
         $ins->httpCode = $httpCode;
         $ins->response = $response;
+        $ins->originURL = $originURL;
 
         return $ins;
     }
@@ -65,6 +73,14 @@ class HttpResponse
     public function getHttpCode()
     {
         return $this->httpCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginURL()
+    {
+        return $this->originURL;
     }
 
 
