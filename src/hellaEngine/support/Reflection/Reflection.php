@@ -66,7 +66,13 @@ class Reflection
      */
     static function callClassFuncNamedObjectArray($className, $functionName, $classObject, array $parameters = [])
     {
-        $ref = new \ReflectionMethod ($className, $functionName);
+        $ref = null;
+        if ($classObject instanceof ReflectionMagic) {
+            $ref = $classObject->ReflectionMethod($className, $functionName);
+        }
+        if (is_null($ref)) {
+            $ref = new \ReflectionMethod ($className, $functionName);
+        }
         $params = [];
         $finalArr = array_change_key_case($parameters, CASE_UPPER);
 
