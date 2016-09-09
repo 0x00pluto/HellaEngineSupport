@@ -87,6 +87,6 @@ class Reflection
                 throw new MissingArgumentException ("Missing parameter $paramName");
             }
         }
-        return $ref->invokeArgs($classObject, $params);
+        return call_user_func_array([$classObject, $functionName], $params);
     }
 }
