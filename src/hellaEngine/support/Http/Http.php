@@ -61,6 +61,21 @@ class Http
         return HttpResponse::create($http_code, $response, $url);
     }
 
+    public function parseQueryArray($query)
+    {
+        if (is_array($query)) {
+            $queryStringArray = [];
+            foreach ($query as $key => $value) {
+                $value = urlencode($value);
+                $queryStringArray [] = "$key=$value";
+            }
+            $queryString = join("&", $queryStringArray);
+        } else {
+            $queryString = $query;
+        }
+        return $queryString;
+    }
+
     /**
      * 解析URL
      * @param $url
@@ -72,11 +87,7 @@ class Http
         if (is_string($query)) {
             $queryString = $query;
         } else {
-            $queryStringArray = [];
-            foreach ($query as $key => $value) {
-                $queryStringArray [] = "$key=$value";
-            }
-            $queryString = join("&", $queryStringArray);
+            $queryString = $this->parseQueryArray($query);
         }
         if (false === stripos($url, '?')) {
             $url .= '?' . $queryString;
