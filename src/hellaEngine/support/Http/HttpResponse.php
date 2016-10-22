@@ -36,8 +36,9 @@ class HttpResponse
 
 
     /**
-     * @param int $httpCode
-     * @param int $response
+     * @param int $httpCode httpCode
+     * @param string $response 返回值
+     * @param string $originURL 原始URL
      * @return HttpResponse
      */
     public static function create($httpCode, $response, $originURL)
