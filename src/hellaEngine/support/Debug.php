@@ -57,7 +57,7 @@ class Debug
     function dumpStack($varVal, $lineStack = 0, $return = FALSE)
     {
         if (!static::$Enable) {
-            return "";
+            return [];
         }
 
         $debug_Info = debug_backtrace();
@@ -79,5 +79,6 @@ class Debug
         } else {
             $this->dump($returnVar, $lineStack + 1);
         }
+        return [];
     }
 }
