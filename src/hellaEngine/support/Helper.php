@@ -6,7 +6,16 @@
  * Date: 16/8/18
  * Time: 上午11:33
  */
-
+if (!function_exists('dump_enable')) {
+    /**
+     * 是否开启打印输出
+     * @param bool $enable
+     */
+    function dump_enable($enable = true)
+    {
+        \hellaEngine\support\Debug::$Enable = $enable;
+    }
+}
 if (!function_exists('dumpLine')) {
     /**
      * @param $varVal

@@ -17,6 +17,11 @@ namespace hellaEngine\support;
 class Debug
 {
 
+    /**
+     * 是否开启打印输出
+     * @var bool
+     */
+    static $Enable = true;
 
     /**
      * @param $varVal
@@ -26,6 +31,9 @@ class Debug
      */
     public function dump($varVal, $lineStack = 0)
     {
+        if (!static::$Enable) {
+            return "";
+        }
         $track = debug_backtrace();
         $trackInfo = $track [$lineStack];
         $lineInfo = $trackInfo ["file"] . ":" . $trackInfo ['line'];
@@ -48,6 +56,10 @@ class Debug
      */
     function dumpStack($varVal, $lineStack = 0, $return = FALSE)
     {
+        if (!static::$Enable) {
+            return "";
+        }
+
         $debug_Info = debug_backtrace();
         $stack = [];
         foreach ($debug_Info as $value) {
