@@ -9,8 +9,8 @@
   "description": "HellaEngine support php code .",
   "require": {
     "php": ">=5.0.0",
-    "symfony/var-dumper": "3.1.5",
-    "illuminate/support": "5.3.16"
+    "symfony/var-dumper": "^3.1.5",
+    "illuminate/support": "5.3.*"
   },
   "license": "MIT",
   "autoload": {
