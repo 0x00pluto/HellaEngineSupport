@@ -84,7 +84,7 @@ class Reflection
             } else if ($p->isOptional() || $p->isDefaultValueAvailable()) {
                 $params [] = $p->getDefaultValue();
             } else {
-                throw new MissingArgumentException ("Missing parameter $paramName");
+                throw new MissingArgumentException ("class:$className,function:$functionName,Missing parameter $paramName");
             }
         }
         return call_user_func_array([$classObject, $functionName], $params);
