@@ -93,6 +93,9 @@ class Http
         } else {
             $queryString = $this->parseQueryArray($query);
         }
+        if (empty($queryString)) {
+            return $url;
+        }
         if (false === stripos($url, '?')) {
             $url .= '?' . $queryString;
         } else {
