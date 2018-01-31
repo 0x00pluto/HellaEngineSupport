@@ -18,6 +18,18 @@ class Debug
 {
 
     /**
+     * function vardump(var)
+     * @var \Closure|null
+     */
+    private static $dumper = null;
+
+    static function setDumper($dumper = null)
+    {
+        self::$dumper = $dumper;
+        return $dumper;
+    }
+
+    /**
      * 是否开启打印输出
      * @var bool
      */
@@ -26,7 +38,6 @@ class Debug
     /**
      * @param $varVal
      * @param int $lineStack
-     * @param int $lineStack
      * @return string
      */
     public function dump($varVal, $lineStack = 0)
@@ -34,6 +45,13 @@ class Debug
         if (!static::$Enable) {
             return "";
         }
+
+        if (is_null(self::$dumper)) {
+            self::$dumper = function ($var) {
+                return dump($var);
+            };
+        }
+
         $track = debug_backtrace();
         $trackInfo = $track [$lineStack];
         $lineInfo = $trackInfo ["file"] . ":" . $trackInfo ['line'];
@@ -43,7 +61,7 @@ class Debug
             'var' => $varVal
         ];
 
-        return dump($printInfo);
+        return (self::$dumper)($printInfo);
     }
 
 
