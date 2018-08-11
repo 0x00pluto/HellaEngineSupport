@@ -7,11 +7,6 @@
     "php-util"
   ],
   "description": "HellaEngine support php code .",
-  "require": {
-    "php": ">=5.0.0",
-    "symfony/var-dumper": "^3.1.5",
-    "illuminate/support": "5.3.*"
-  },
   "license": "MIT",
   "autoload": {
     "psr-4": {
@@ -28,7 +23,13 @@
       "role": "Developer"
     }
   ],
+  "require": {
+    "php": ">=7.0.0",
+    "ext-curl": "*",
+    "symfony/var-dumper": "^3.1.5",
+    "illuminate/support": "5.3.*"
+  },
   "require-dev": {
-    "phpunit/phpunit": "^5.0"
+    "phpunit/phpunit": "^7.0"
   }
 }
