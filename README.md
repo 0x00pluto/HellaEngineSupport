@@ -1,6 +1,10 @@
 # HellaEngineSupport
 HellaEngineSupport
 #   版本记录
+-   V1.2.0
+    -   发布日期:2018年08月11日
+    -   更新内容:
+        -   增加 Http 支持 并发
 -   V1.1.0
     -   发布日期:2018年01月31日
     -   更新内容:
